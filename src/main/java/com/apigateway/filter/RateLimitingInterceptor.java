@@ -2,7 +2,7 @@ package com.apigateway.filter;
 
 import com.apigateway.ratelimit.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -17,14 +17,17 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class RateLimitingInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    private RateLimiter rateLimiter;
+    private final RateLimiter rateLimiter;
 
     @Value("${ratelimit.enabled:true}")
     private boolean rateLimitEnabled;
 
     @Value("${ratelimit.key-generator:ip}")
     private String keyGenerator; // ip, api-key, user-id
+
+    public RateLimitingInterceptor(@Qualifier("tokenBucketRateLimiter") RateLimiter rateLimiter) {
+        this.rateLimiter = rateLimiter;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
