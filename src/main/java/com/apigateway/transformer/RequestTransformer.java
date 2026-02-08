@@ -37,12 +37,13 @@ public class RequestTransformer {
 
         private void applyTransformations() {
             // Copy existing headers and apply removals/additions
-            Enumeration<String> headerNames = getRequest().getHeaderNames();
+            HttpServletRequest httpRequest = (HttpServletRequest) getRequest();
+            Enumeration<String> headerNames = httpRequest.getHeaderNames();
             while (headerNames.hasMoreElements()) {
                 String headerName = headerNames.nextElement();
                 if (transformation.getHeaderRemovals() == null || 
                     !transformation.getHeaderRemovals().containsKey(headerName)) {
-                    modifiedHeaders.put(headerName, getRequest().getHeader(headerName));
+                    modifiedHeaders.put(headerName, httpRequest.getHeader(headerName));
                 }
             }
 

@@ -1,0 +1,59 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+
+# Build
+target/
+build/
+dist/
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# Gradle
+.gradle/
+*.gradle.bak
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Runtime
+*.pid
+*.seed
+*.pid.lock
+
+# Docker
+docker-compose.override.yml
+
+# Test coverage
+coverage/
+*.coverage
+
+# IDE Run configurations
+.run/
+
+# OS
+Thumbs.db
+.AppleDouble
+.LSOverride

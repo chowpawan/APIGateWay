@@ -1,0 +1,6 @@
+type: specs.openrewrite.org/v1beta/recipe
+name: com.apigateway.UpgradeToJava21
+displayName: Upgrade API Gateway to Java 21
+description: Upgrade Java project to Java 21 LTS
+recipeList:
+  - org.openrewrite.java.migrate.UpgradeToJava21

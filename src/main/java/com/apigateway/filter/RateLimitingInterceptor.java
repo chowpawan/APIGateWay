@@ -44,7 +44,7 @@ public class RateLimitingInterceptor implements HandlerInterceptor {
         response.setHeader("X-RateLimit-Reset", String.valueOf(resetTime));
 
         if (!allowed) {
-            response.setStatus(HttpServletResponse.SC_TOO_MANY_REQUESTS);
+            response.setStatus(429); // SC_TOO_MANY_REQUESTS
             response.setHeader("Retry-After", String.valueOf(resetTime / 1000));
             log.warn("Rate limit exceeded for key: {}", limitKey);
             return false;

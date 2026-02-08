@@ -50,11 +50,11 @@ public class JwtTokenProvider {
 
     public Claims validateAndGetClaims(String token) {
         try {
-            return Jwts.parserBuilder()
-                    .setSigningKey(jwtSecret)
+            return Jwts.parser()
+                    .verifyWith(jwtSecret)
                     .build()
-                    .parseClaimsJws(token)
-                    .getBody();
+                    .parseSignedClaims(token)
+                    .getPayload();
         } catch (Exception e) {
             log.error("Error validating JWT token: {}", e.getMessage());
             throw new RuntimeException("Invalid JWT token", e);
